@@ -17,6 +17,28 @@ Domain Path:
   ### Activation, deactivation & uninstall hooks ###
 */
 require_once( 'hooks.php' );
+if ( is_admin() ) {
+     // echo __DIR__;
+     // echo __DIR__ . uniqid( '-' );
+
+     //$jotain = get_option( 'active_plugins' );
+     //echo array_search( 'selusta-outpost/index.php', $jotain ) . 'hoi';
+
+     //$jotain = get_option( 'uninstall_plugins' );
+    //print_r($jotain);
+     //echo $jotain['selusta-outpost/index.php'];
+     //$jotain = get_option( 'recently_activated' );
+     //print_r($jotain);
+     //echo $jotain['selusta-outpost/index.php'];
+
+     //$jotain = get_option( '_site_transient_update_plugins' );
+     //print_r($jotain);
+     //echo $jotain->checked['selusta-outpost/index.php'];
+     //$jotain = get_option( '_transient_plugin_slugs' );
+     // print_r($jotain);
+     //echo array_search( 'selusta-outpost/index.php', $jotain );
+
+}
 register_activation_hook( __FILE__, 'selustaActivate' );
 register_deactivation_hook( __FILE__, 'selustaDeActivate' );
 register_uninstall_hook( __FILE__, 'selustaUnistall');
