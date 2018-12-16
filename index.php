@@ -22,6 +22,7 @@ if( is_admin() ) {
   //print_r( scandir( ABSPATH ) );
   //print_r( createFileTree( ABSPATH, 'md5' ) );
   //var_dump( is_dir( '/var/www/vhosts/toisenasteen.fi/httpdocs/wp-admin/' ) );
+  //print_r( testAlgos( 'ojoij90jiojIOJjij ioj ij)j9009j0jj21j j 91 ', 10000 ) );
 }
 
 /*

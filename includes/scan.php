@@ -22,32 +22,29 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
   readme.txt
   wp-config.php
   ...
+
+  createFileTree ( path , algo )
 */
 
 function createFileTree( $path = true, $hash = false ) {
-
   if( $path === true || is_dir( $path ) === false ) { // if 'path' not set return false
     return false;                                     // or 'path' is not dir
   }
 
-  if( $hash !== false ) {
-    $hashProt = array(
-      'md5',
-      'sha1'
-    );
-    if( in_array( $hash, $hashProt ) ) {
-      $prot = $hash;
+  if( $hash !== false ) { // if hash set, checking is algo availeble
+    if( in_array( $hash, hash_algos() ) ) {
+      $algo = $hash;
       $hash = true;
     }
   }
 
-
-
-  if( substr( $path, -1 ) !== '/' ) {
+  if( substr( $path, -1 ) !== '/' ) { // add '/' to end, if not already
     $path = $path . '/';
   }
 
   $result = scandir( $path );
+
+  // delete all '.' and '..' result, regenerate key numbers
   if( $result[0] === '.' && $result[1] === '..' ) {
     array_splice($result, 0, 2);
   } else {
@@ -59,22 +56,22 @@ function createFileTree( $path = true, $hash = false ) {
     }
   }
 
-
+  // create file tree, open dirs and create hashes if set
   foreach ($result as $key => $value) {
       if( is_dir( $path . $value ) ) {
         if( $hash ) {
-          $result[$key] = array(
-            $value => createFileTree( $path . $value, $prot )
+          $result[$key] = array( // open new dir
+            $value => createFileTree( $path . $value, $algo )
           );
         } else {
-          $result[$key] = array(
+          $result[$key] = array( // open new dir
             $value => createFileTree( $path . $value )
           );
         }
       } else {
-        if( $hash ) {
+        if( $hash ) { // if hash set, generate hash from file
           $result[$key] = array (
-            $value => hash_file( $prot, $path . $value )
+            $value => hash_file( $algo, $path . $value )
           );
         }
       }
@@ -82,6 +79,28 @@ function createFileTree( $path = true, $hash = false ) {
 
   return $result;
 
-}
+} // end of 'createFileTree' function
+
+/*  testAlgos test all availeble algos
+    testAlgos ( text , repeats )
+    return array, with algo, time and result/hash
+*/
+
+function testAlgos( $text = 'Selusta', $repeats = 1 ) {
+  $testResult = hash_algos(); // get all availeble algos
+    foreach ( $testResult as $key => $algo) {
+      $startTime = microtime(); // start microtime
+      for ( $i = 0; $i <= $repeats ; $i++) {
+        $hashResult =  hash( $algo, $text);
+      }
+      $endTime = microtime(); // end microtime
+      $testResult[$key] = array(
+        'algo' => $algo,
+        'time' => $endTime - $startTime,
+        'result' => $hashResult
+      );
+    }
+    return $testResult;
+} // end of 'testAlgos' function
 
 ?>
