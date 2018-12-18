@@ -24,6 +24,7 @@ function selustaActivate() { // First time activation plugin
   // $renameFolder = rename( __DIR__ , __DIR__ . $uniqid );
   if( $renameFolder || false ) { // if folder name change success
 
+    add_option( 'selusta-plugin-dir', $uniqid, '', 'yes' );
     $plugin_file = 'selusta-outpost' . $uniqid . '/index.php';
     // creating wordpress nonce url to redirect
     $newPluginInstallationUrl = html_entity_decode( wp_nonce_url( 'plugins.php?action=activate&plugin=' . urlencode( $plugin_file ) . '&plugin_status=' . $_GET['plugin_status'] . '&paged=' . $_GET['paged'] . '&s=' . $_GET['s'], 'activate-plugin_' . $plugin_file ) );
@@ -45,6 +46,6 @@ function selustaDeActivate() {
 }
 
 function selustaUnistall() {
-
+  delete_option( 'selusta-plugin-dir' );
 }
  ?>

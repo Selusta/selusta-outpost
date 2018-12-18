@@ -1,0 +1,94 @@
+.SelustaMenuApp {
+  overflow: hidden;
+  background-color: #FFF;
+  position: relative;
+  min-height: 100px;
+  display: list-item;
+}
+
+.SelustaMenuApp span.ball {
+  width: 90%;
+  padding-bottom: 90%;
+  border-radius: 1000000px;
+  background-color: #46b450;
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 0 !important;
+}
+
+.SelustaMenuApp span.ball:nth-of-type(2) {
+  width: 10%;
+  padding-bottom: 10%;
+  top: 70%;
+  left: 37%;
+  transform: translate(-40%, -40%);
+}
+
+.SelustaMenuApp span.ball:nth-of-type(3) {
+  width: 25%;
+  padding-bottom: 25%;
+  top: 5%;
+  left: 65%;
+  transform: translate(-40%, -40%);
+}
+
+.SelustaMenuApp span.ball:last-of-type {
+  width: 60%;
+  padding-bottom: 60%;
+  top: 0%;
+  left: 0%;
+  transform: translate(-40%, -40%);
+}
+
+.SelustaMenuApp div {
+  z-index: 2;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  padding: 21px 7px;
+  padding-bottom: 32px;
+  text-align: center;
+  position: relative;
+}
+
+.SelustaMenuApp div span {
+  display: block;
+}
+
+.SelustaMenuApp div span.status {
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.SelustaMenuApp div span.totalCount {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.SelustaMenuApp div span.totalText {
+  line-height: 0.9;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.SelustaMenuApp div .selustaLogo {
+  width: 60%;
+  float: right;
+  margin: 6px 0px;
+}
+
+
+
+body.folded .SelustaMenuApp {
+  max-width: 36px;
+  
+}
+

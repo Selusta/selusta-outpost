@@ -14,5 +14,9 @@ function selustaMenuItems() {
     );
 }
 
+function SelustaAdminEnqueue( $hook ) {
+  wp_enqueue_script( 'SelustaManuAppScript', plugin_dir_url() . 'selusta-outpost' . get_option( 'selusta-plugin-dir' ) . '/dist/js/menuApp.js', array ( 'jquery' ), 0.1, true);
+  wp_enqueue_style( 'SelustaManuAppStyle', plugin_dir_url() . 'selusta-outpost' . get_option( 'selusta-plugin-dir' ) . '/dist/css/menuApp.css', array(), 0.1 );
+}
 
  ?>
